@@ -13,16 +13,19 @@ class App extends Component {
       contador: this.state.contador + 1
     })
   }
+
   decrement = () => {
     this.setState({
       contador: this.state.contador - 1
     })
   }
+
   clear = () => {
     this.setState({
       contador: this.state.contador = 0
     })
   }
+
   render () {
     return (
       <div className="App">
@@ -38,7 +41,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Learn React Now
           </a>
         </header>
       </div>
