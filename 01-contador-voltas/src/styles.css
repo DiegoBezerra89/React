@@ -1,0 +1,45 @@
+@import url('//fonts.googleapis.com/css?family=Teko&display=swap');
+
+* {
+    font-family: 'Teko', sans-serif;
+}
+
+body {
+    text-align: center;
+    background-image: linear-gradient(to right bottom, #1600ff, #0059ff, #007eff, #009aff, #12b2eb);
+    height: 100vh;
+}
+
+.voltas {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.voltas span{
+    font-size: 100px;
+    margin-bottom: 10px;
+}
+
+button {
+    border: 1px solid black;
+    margin: 8px;
+    padding: 10px 22px;
+    font-size: 30px;
+    background-color: #f9f9f9;
+}
+
+
+.tempo {
+    font-size: 20px;
+}
+
+.tempo span {
+    font-size: 45px;
+}
+
+.bigger {
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 50%;
+    padding-top: 20px;
+}

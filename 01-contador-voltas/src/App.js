@@ -1,32 +1,15 @@
 import React, { useState, useEffect } from 'react'
-
-//arrow-function || utilizar letras maiúsculas para determinar ao React o que são componentes
-const MostraVoltas = (props) => { //props neste caso, recebe todas as propriedades passadas no JSX, neste caso voltas='15' 
-  return (
-    <p>{props.voltas}<br/>
-      voltas
-    </p>
-  )  
-}
-
-const TempoMedio = (props) => {
-  return (
-    <p>
-      {props.tempo}<br/>
-      Tempo médio por volta
-    </p>
-  )
-}
-
-//Componente reaproveitável
-const Button = (props) => <button onClick={props.onClick}> {props.text} </button> //não precisa de {} se a fucção tiver apenas uma linha
-
+//importando módulos externos de componentes
+import MostraVoltas from './MostraVoltas.js'
+import MostraTempo from './MostraTempo.js'
+import Button from './Button.js'
+import './styles.css'
 
 function App() {
-  const [numVoltas, setNumVoltas] = useState(10)
+  const [numVoltas, setNumVoltas] = useState(0)
   const [running, setRunning] = useState(false) //se o programa está rodando ou não, toda vez q o running for setado, o useEffect vai responder criando o intervalo de 1000ms
   const[tempo, setTempo] =  useState(0)
-
+  
   useEffect(() => { //possibilita uma chamada de função num determinado tempo
     let timer = null
       if(running){
@@ -46,24 +29,31 @@ function App() {
     setRunning(!running) //se for falso, vira verdadeiro e se for verdadeiro vira falso 
   }
 
-
   const increment = () => {
     setNumVoltas(numVoltas + 1)
   }
+
   const decrement = () => {
+    if(numVoltas > 0)
     setNumVoltas(numVoltas - 1)
   }
 
-  
+  const reset = () => {
+    setNumVoltas(0)
+    setTempo(0)
+  }
 
   return (
     <div className='App'> 
       <MostraVoltas voltas={numVoltas} /> {/* possível passar valores ao componente via props, voltas='15'*/}     
-      <Button text='+' onClick={increment} /> 
-      <Button text='-' onClick={decrement} />
-      <TempoMedio tempo={tempo} />
-      <Button text='Iniciar' onClick={toggleRunning} />
-      <Button text='Reiniciar' />
+      <Button text='+' className="bigger" onClick={increment} /> 
+      <Button text='-' className="bigger" onClick={decrement} />
+      {
+        numVoltas > 0 && //Em jsx este elemento só será mostrado na tela se esta condição for verdadeira 
+      <MostraTempo tempo={Math.round(tempo / numVoltas)} /> //saber quanto é a média de tempo
+      }
+      <Button text={running ? 'Pausar' : 'Iniciar'} onClick={toggleRunning} />
+      <Button onClick={reset} text='Reiniciar' />
     </div>
   )
 }
